@@ -87,7 +87,7 @@ async function tsp_shortest_route_geocodes() {
                 "lat": 35.22185,
                 "lng": -119.12
            },
-          "2": {
+           "2": {
                 "address": "2 1012 W Ventura Blvd, Camarillo, CA 93010",
                 "lat": 34.2212685,
                 "lng": -119.1070667
@@ -100,18 +100,15 @@ async function tsp_shortest_route_geocodes() {
         },
         "pickups": 
         [
-           // "1"
         ],
         "pickup_dropoff_constraints": {
-            // if we enable these constraints it gives an error !!
-            // "0": [
-            //     "0",
-            //     "1"
-            // ],
-            // "1": [
-            //     "2",
-            //     "3"
-            // ]
+            //if we enable these constraints it gives an error !!
+            "0": [
+                "1"
+            ],
+            "2": [
+                "3"
+            ]
         }
     }
 

@@ -203,9 +203,9 @@ async function tsp_shortest_route_compare() {
 (async () => {
     
     try {
-        //var data = await tsp_shortest_route();
-        //var data2 = await tsp_shortest_route_compare();
-        var data3 = await tsp_shortest_route_geocodes();
+        var data = await tsp_shortest_route();
+        var data2 = await tsp_shortest_route_compare();
+        //var data3 = await tsp_shortest_route_geocodes();
 
         // data2 should == data3 
 

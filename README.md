@@ -8,13 +8,15 @@ To deploy on Heroku:
 
 ```bash
 heroku login
-heroku create mutualaid-tsp
+heroku create your-deployment
 git push heroku master
 ```
 
+`resilience-tsp.herokuapp.com` is a deployed heroku app in the mutualaidworld team, and used for production. You can create your own deployment or just run locally `python app.py` (after installing requirements.txt into a virtualenv)
+
 Sample request:
 ```bash
-curl --location --request GET 'https://mutualaid-tsp.herokuapp.com/shortest-route' \
+curl --location --request GET 'https://resilience-tsp.herokuapp.com/shortest-route' \
 --header 'Content-Type: text/plain' \
 --data-raw '{
     "addresses": {
@@ -138,6 +140,8 @@ Sample response
   ]
 }
 ```
+
+Check out the [node_client_demo](node_client_demo) directory for an example of how to access this end point using node/javascript.
 
 Note that the geolocations have been sorted in the optimal order output by the  routing model.
 

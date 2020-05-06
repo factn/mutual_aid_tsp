@@ -65,9 +65,10 @@ async function tsp_shortest_route() {
 async function tsp_shortest_route_geocodes() {
 
     // test of the case where we supply the geocodes
-    //const url = "https://mutualaid-tsp.herokuapp.com/shortest-route-given-geocodes";
-    
-    const url = "http://localhost:5000/shortest-route-given-geocodes";    
+
+    const url = "https://mutualaid-tsp.herokuapp.com/shortest-route-given-geocodes";
+    //const url = "http://localhost:5000/shortest-route-given-geocodes";    
+
     var req_data =
     {
        "addresses": {
@@ -128,9 +129,8 @@ async function tsp_shortest_route_compare() {
     /// comparable case to above but 
     //  this time we supplu the same data as above...
 
-    //const url = "https://mutualaid-tsp.herokuapp.com/shortest-route-given-geocodes";    
-   
-    const url = "http://localhost:5000/shortest-route-given-geocodes";    
+    const url = "https://mutualaid-tsp.herokuapp.com/shortest-route-given-geocodes";    
+    //const url = "http://localhost:5000/shortest-route-given-geocodes";    
    
     var source_data_explicit =
     {

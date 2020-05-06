@@ -6,7 +6,7 @@ async function tsp_shortest_route() {
 
     /// test of the case where it has to do geolookup 
 
-    const url = "https://mutualaid-tsp.herokuapp.com/shortest-route";  
+    const url = "https://resilience-tsp.herokuapp.com/shortest-route";  
 
     var source_data =
     {
@@ -50,12 +50,17 @@ async function tsp_shortest_route() {
         }
     }
 
-    console.log("requesting " + url)
+    console.log("-------------------------------------")
+    console.log("request " + url)
+    console.log(source_data);
+  
     const response = await axios({
       method: 'GET',
       url: url,
       data: source_data
     });
+
+    console.log("--------response----------")
     console.log(response.data);
     return response.data;
 
@@ -66,7 +71,7 @@ async function tsp_shortest_route_geocodes() {
 
     // test of the case where we supply the geocodes
 
-    const url = "https://mutualaid-tsp.herokuapp.com/shortest-route-given-geocodes";
+    const url = "https://resilience-tsp.herokuapp.com/shortest-route-given-geocodes";
     //const url = "http://localhost:5000/shortest-route-given-geocodes";    
 
     var req_data =
@@ -95,7 +100,7 @@ async function tsp_shortest_route_geocodes() {
         },
         "pickups": 
         [
-            "1"
+           // "1"
         ],
         "pickup_dropoff_constraints": {
             // if we enable these constraints it gives an error !!
@@ -110,7 +115,8 @@ async function tsp_shortest_route_geocodes() {
         }
     }
 
-    console.log("requesting " + url)
+    console.log("-------------------------------------")
+    console.log("request " + url)
     console.log(req_data);
     const response = await axios({
       method: 'POST',
@@ -118,8 +124,10 @@ async function tsp_shortest_route_geocodes() {
       data: req_data
     });
 
+    console.log("--------response----------")
     console.log(response.data);
     return response.data;
+
 }
 
 
@@ -129,7 +137,7 @@ async function tsp_shortest_route_compare() {
     /// comparable case to above but 
     //  this time we supplu the same data as above...
 
-    const url = "https://mutualaid-tsp.herokuapp.com/shortest-route-given-geocodes";    
+    const url = "https://resilience-tsp.herokuapp.com/shortest-route-given-geocodes";    
     //const url = "http://localhost:5000/shortest-route-given-geocodes";    
    
     var source_data_explicit =
@@ -186,13 +194,16 @@ async function tsp_shortest_route_compare() {
         }
     }
 
-    console.log("requesting " + url)
+    console.log("-------------------------------------")
+    console.log("request " + url)
+    console.log(source_data_explicit)
     const response = await axios({
       method: 'POST',
       url: url,
       data: source_data_explicit
     });    
 
+    console.log("--------response----------")
     console.log(response.data);
     return response.data;
 }
@@ -203,12 +214,10 @@ async function tsp_shortest_route_compare() {
 (async () => {
     
     try {
-        var data = await tsp_shortest_route();
-        var data2 = await tsp_shortest_route_compare();
-        //var data3 = await tsp_shortest_route_geocodes();
-
-        // data2 should == data3 
-
+        await tsp_shortest_route_geocodes();
+        //await tsp_shortest_route();
+        //await tsp_shortest_route_compare();
+        
     } catch (err) {
         console.error(err);
     }

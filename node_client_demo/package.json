@@ -1,0 +1,15 @@
+{
+  "name": "node_client_demo",
+  "version": "0.0.1",
+  "description": "Demo of using mutualaid_tsp from node",
+  "main": "example_client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Miles Thompson <utunga@gmail.com>",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "lodash": "^4.17.15"
+  }
+}

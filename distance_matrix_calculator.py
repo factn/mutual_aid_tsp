@@ -10,7 +10,7 @@ def create_distance_matrix(addresses):
     else:
         distance_matrix, locations = create_distance_matrix_osm(addresses)
     return distance_matrix, locations
-
+    
 # Using Google Distance Matrix API
 def create_distance_matrix_gdm(addresses):
     API_key = os.getenv('GOOGLE_DISTANCE_MATRIX_API_KEY')
@@ -75,6 +75,7 @@ def get_geocodes_osm(addresses):
         raise NotAllAddressesValidOSM
     return locations
 
+
 # Using OpenStreetMap
 def create_distance_matrix_osm(addresses):
     locations = get_geocodes_osm(addresses)
@@ -86,5 +87,35 @@ def create_distance_matrix_osm(addresses):
     ]
     return distance_matrix, locations
 
+def create_distance_matrix_from_geocodes(addresses):
+    locations = [Address(address) for address in addresses]
+    distance_matrix = [[
+        0 if i==j 
+        else geodesic((i.latitude, i.longitude), (j.latitude, j.longitude)).miles
+        for j in locations]
+        for i in locations
+    ]
+    print("locations")
+    print(locations)
+    print("distance_matrix")
+    print(distance_matrix)
+    
+    return distance_matrix, locations
+
 class NotAllAddressesValidOSM(Exception):
     pass
+
+class Address(object):
+    def __init__(self, address_dict):
+        self.address = address_dict["address"]
+        self.latitude = address_dict["lat"]
+        self.longitude = address_dict["lng"]
+
+    def __str__(self):
+        return ('< address: {address}\n'
+                  'latitude: {latitude}\n'
+                  'longitude: {longitude}\n')\
+        .format(**self.__dict__)
+
+    def __repr__(self):
+        return self.__str__()
